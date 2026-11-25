@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagrik Sahayak | Local Crisis Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-logo">NS</div>
+      <div><b>NAGRIK SAHAYAK</b><small>THE LOCAL CRISIS DASHBOARD</small></div>
+    </div>
+    <p class="eyebrow">WELCOME BACK</p>
+    <h1>Sign in to continue</h1>
+    <p class="login-subtitle">Access civic services and stay connected with your area.</p>
+    <form id="loginForm">
+      <label>Email address<input id="loginEmail" type="email" required placeholder="Enter your email"></label>
+      <label>Password<input id="loginPassword" type="password" required placeholder="Enter your password"></label>
+      <label>Login as
+        <select id="loginRole">
+          <option value="citizen">Citizen</option>
+          <option value="admin">Administrator</option>
+        </select>
+      </label>
+      <button class="login-submit" type="submit">Login to Dashboard →</button>
+      <p id="loginError" class="login-error"></p>
+    </form>
+    <div class="login-hint"><b>Admin demo login</b><span>admin@nagrik.local</span><span>Password: admin123</span></div>
+    <small class="login-foot">Nagrik Sahayak · Serving communities together</small>
+  </div>
+</div>
+
+<div class="app" id="mainApp">
+
+  <aside class="sidebar">
+    <div class="logo-box">
+      <div class="logo">NS</div>
+      <div><b>NAGRIK SAHAYAK</b><small>THE LOCAL CRISIS DASHBOARD</small></div>
+    </div>
+
+    <nav>
+      <button class="nav active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav" data-page="water">💧 <span>Water Problem</span></button>
+      <button class="nav" data-page="electricity">⚡ <span>Electricity</span></button>
+      <button class="nav" data-page="blood">🩸 <span>Blood Donation</span></button>
+      <button class="nav" data-page="complaints">▣ <span>Complaints</span></button>
+      <button class="nav" data-page="reports">◫ <span>Reports</span></button>
+      <button class="nav admin-only" data-page="admin" hidden>⚙ <span>Admin Panel</span></button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="mini-profile"><div class="avatar">C</div><div><b>Citizen</b><small>Ahmedabad</small></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand">NS</div>
+      <div class="search">
+        <span>⌕</span><input id="search" placeholder="Search water, electricity, blood, complaints..." autocomplete="off">
+        <div id="suggestions"></div>
+      </div>
+      <div class="notification-wrap">
+        <button class="bell" id="bell" aria-label="Notifications">🔔<span id="notifBadge" class="notif-badge">0</span></button>
+        <div id="notificationPanel" class="notification-panel">
+          <div class="notification-head"><div><b>Notifications</b><small id="notifSummary">No new notifications</small></div><button id="markAllRead" class="mark-read">Mark all read</button></div>
+          <div id="notificationList" class="notification-list"></div>
+          <div class="notification-foot"><button id="clearNotifications">Clear all</button></div>
+        </div>
+      </div>
+      <button class="logout-btn" id="logoutBtn" type="button">Logout</button>
+      <button class="help" id="openNaas">NAAS</button>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">CITIZEN CONTROL CENTER</p>
+          <h1>Local problems. <span>One dashboard.</span></h1>
+          <p>Report civic issues, discover nearby needs and follow what is happening in your area.</p>
+        </div>
+        <div class="hero-badge"><i></i> LIVE CIVIC PULSE</div>
+      </div>
+
+      <div class="pulse">
+        <div class="pulse-title"><b>Area Crisis Pulse</b><small id="pulseText">Monitoring local activity</small></div>
+        <div class="pulse-bars">
+          <div><span>Water</span><i><em style="width:72%"></em></i><b>72%</b></div>
+          <div><span>Power</span><i><em style="width:48%"></em></i><b>48%</b></div>
+          <div><span>Blood</span><i><em style="width:31%"></em></i><b>31%</b></div>
+        </div>
+        <button class="outline" data-page="reports">View pulse →</button>
+      </div>
+
+      <div class="stats">
+        <div><small>WATER CASES</small><strong id="waterStat">124</strong><span>● 8 new this week</span></div>
+        <div><small>ELECTRICITY CASES</small><strong id="powerStat">86</strong><span>● 5 new this week</span></div>
+        <div><small>BLOOD REQUESTS</small><strong id="bloodStat">43</strong><span class="red">● 12 urgent</span></div>
+        <div><small>RESOLVED</small><strong id="resolvedStat">198</strong><span>● 92% resolved</span></div>
+      </div>
+
+      <div class="section-head"><div><h2>Smart Civic Services</h2><p>Choose what you need right now.</p></div></div>
+      <div class="services">
+        <article class="service water-card"><div class="service-top"><div class="big-icon">💧</div><span>01</span></div><h3>Water Problem</h3><p>Supply, leakage, dirty water, low pressure or tanker requirement.</p><button data-page="water">Report water issue <b>→</b></button></article>
+        <article class="service power-card"><div class="service-top"><div class="big-icon">⚡</div><span>02</span></div><h3>Electricity Problem</h3><p>Power cut, transformer, street light, wire or voltage issue.</p><button data-page="electricity">Report power issue <b>→</b></button></article>
+        <article class="service blood-card"><div class="service-top"><div class="big-icon">🩸</div><span>03</span></div><h3>Blood Network</h3><p>Register as a donor and see blood requirements around you.</p><button data-page="blood">Open blood network <b>→</b></button></article>
+      </div>
+      <div class="panel location-panel standalone-location">
+        <div class="panel-head"><div><h2>Smart Location Finder</h2><p>Pincode → location</p></div><span class="live-dot">●</span></div>
+        <label>Enter Pincode</label>
+        <div class="pin-row"><input id="dashPin" maxlength="6" inputmode="numeric" placeholder="e.g. 382325"><button id="dashFind">Find</button></div>
+        <div id="dashResult" class="location-result">📍 Your area will appear here</div>
+        <div class="nearby-chips"><span>Water</span><span>Power</span><span>Blood</span></div>
+      </div>
+    </section>
+
+    <!-- WATER -->
+    <section id="water" class="page">
+      <div class="page-title"><div><p class="eyebrow">SERVICE 01</p><h1>💧 Water Problem</h1><p>Tell us what is happening in your area.</p></div><button class="back" data-page="dashboard">← Dashboard</button></div>
+      <div class="form-card">
+        <div class="form-note"><b>Smart location is automatic.</b><span>Enter a 6-digit Indian pincode and the location details will be fetched.</span></div>
+        <form id="waterForm">
+          <div class="fields">
+            <label>Pincode *<input id="waterPin" maxlength="6" inputmode="numeric" required placeholder="6-digit pincode"></label>
+            <label>Area / Village<input id="waterArea" readonly placeholder="Auto-filled"></label>
+            <label>District<input id="waterDistrict" readonly placeholder="Auto-filled"></label>
+            <label>State<input id="waterState" readonly placeholder="Auto-filled"></label>
+            <label class="full">Local Authority<input id="waterAuthority" readonly placeholder="Auto-filled after location"></label>
+            <label>Problem Type *<select id="waterType" required><option value="">Select</option><option>Water Supply Not Available</option><option>Pipeline Leakage</option><option>Dirty / Contaminated Water</option><option>Low Water Pressure</option><option>Water Tanker Required</option><option>Other</option></select></label>
+            <label class="full">Full Address *<textarea id="waterAddress" required placeholder="House no., street, landmark..."></textarea></label>
+            <label class="full">Description<textarea id="waterDesc" placeholder="Describe the issue..."></textarea></label>
+          </div>
+          <button class="submit">Submit Water Complaint →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ELECTRICITY -->
+    <section id="electricity" class="page">
+      <div class="page-title"><div><p class="eyebrow">SERVICE 02</p><h1>⚡ Electricity Problem</h1><p>Report a local electricity issue.</p></div><button class="back" data-page="dashboard">← Dashboard</button></div>
+      <div class="form-card">
+        <div class="form-note"><b>Smart authority detection.</b><span>Your location helps identify the relevant electricity distribution authority.</span></div>
+        <form id="powerForm">
+          <div class="fields">
+            <label>Pincode *<input id="powerPin" maxlength="6" inputmode="numeric" required placeholder="6-digit pincode"></label>
+            <label>Area / Location<input id="powerArea" readonly placeholder="Auto-filled"></label>
+            <label>District<input id="powerDistrict" readonly placeholder="Auto-filled"></label>
+            <label>State<input id="powerState" readonly placeholder="Auto-filled"></label>
+            <label class="full">Electricity Authority<input id="powerAuthority" readonly placeholder="Auto-filled after location"></label>
+            <label>Problem Type *<select id="powerType" required><option value="">Select</option><option>Power Cut</option><option>Voltage Fluctuation</option><option>Transformer Problem</option><option>Street Light Problem</option><option>Broken Pole / Wire</option><option>Other</option></select></label>
+            <label class="full">Full Address *<textarea id="powerAddress" required placeholder="House no., street, landmark..."></textarea></label>
+            <label class="full">Description<textarea id="powerDesc" placeholder="Describe the issue..."></textarea></label>
+          </div>
+          <button class="submit">Submit Electricity Complaint →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- BLOOD -->
+    <section id="blood" class="page">
+      <div class="page-title"><div><p class="eyebrow">SERVICE 03</p><h1>🩸 Blood Network</h1><p>Connect donors with verified blood requirements.</p></div><button class="back" data-page="dashboard">← Dashboard</button></div>
+      <div class="blood-hero">
+        <div><b>Smart Blood Match</b><span>See requirements by blood group and location.</span></div>
+        <div class="blood-search"><input id="bloodPin" maxlength="6" inputmode="numeric" placeholder="Enter pincode"><button id="bloodFind">Find area</button></div>
+        <div id="bloodLocation" class="blood-location">📍 Location not selected</div>
+      </div>
+      <div class="section-head"><div><h2>Blood Group Availability</h2><p>Demo inventory for UI testing.</p></div></div>
+      <div id="bloodCards" class="blood-cards"></div>
+      <div class="panel">
+        <div class="panel-head"><div><h2>Nearby Requirements</h2><p>Example requirements — connect verified hospital/blood-bank data for production.</p></div></div>
+        <div class="requirements" id="requirements"></div>
+      </div>
+      <div class="form-card donor-card">
+        <h2>Register as Blood Donor</h2>
+        <p class="muted">Choose “No Idea” if you do not know your blood group.</p>
+        <form id="donorForm">
+          <div class="fields">
+            <label>Full Name *<input id="donorName" required></label>
+            <label>Blood Group *<select id="donorGroup" required><option value="">Select</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option><option>No Idea</option></select></label>
+            <label class="full">Additional Information<textarea id="donorInfo" placeholder="Optional"></textarea></label>
+          </div>
+          <button class="submit">Register as Donor →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- COMPLAINTS -->
+    <section id="complaints" class="page">
+      <div class="page-title"><div><p class="eyebrow">TRACKING</p><h1>Complaint Center</h1><p>Every submitted complaint gets a unique tracking ID.</p></div></div>
+      <div class="panel">
+        <div class="filters"><input id="filter" placeholder="Search complaint ID, issue or location..."><select id="status"><option>All Status</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Category</th><th>Issue</th><th>Location</th><th>Date</th><th>Status</th></tr></thead><tbody id="complaintTable"></tbody></table></div>
+      </div>
+    </section>
+
+
+    <!-- ADMIN -->
+    <section id="admin" class="page">
+      <div class="page-title"><div><p class="eyebrow">ADMINISTRATION</p><h1>Admin Control Center</h1><p>Review citizen complaints and update their progress.</p></div></div>
+      <div class="admin-summary">
+        <div><small>TOTAL COMPLAINTS</small><strong id="adminTotal">0</strong></div>
+        <div><small>PENDING</small><strong id="adminPending">0</strong></div>
+        <div><small>IN PROGRESS</small><strong id="adminProgress">0</strong></div>
+        <div><small>RESOLVED</small><strong id="adminResolved">0</strong></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h2>Manage Complaints</h2><p>Change a complaint status using the dropdown.</p></div></div>
+        <div class="table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Category</th><th>Issue</th><th>Location</th><th>Date</th><th>Status</th></tr></thead><tbody id="adminComplaintTable"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- REPORTS -->
+    <section id="reports" class="page">
+      <div class="page-title"><div><p class="eyebrow">INSIGHTS</p><h1>Crisis Reports</h1><p>Understand the local civic pulse at a glance.</p></div></div>
+      <div class="report-layout">
+        <div class="panel crisis-map">
+          <div class="panel-head"><div><h2>Area Heat View</h2><p>Demo visualisation</p></div></div>
+          <div class="fake-map">
+            <span class="zone z1">NARODA<em>72</em></span><span class="zone z2">ODHAV<em>48</em></span><span class="zone z3">BAPUNAGAR<em>34</em></span><span class="zone z4">MANINAGAR<em>26</em></span><span class="zone z5">VATVA<em>19</em></span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h2>Service Split</h2><p>Current demo numbers</p></div></div>
+          <div class="bars"><div><span>Water</span><b>124</b><i><em style="width:78%"></em></i></div><div><span>Electricity</span><b>86</b><i><em style="width:54%"></em></i></div><div><span>Blood</span><b>43</b><i><em style="width:31%"></em></i></div></div>
+        </div>
+      </div>
+    </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand" id="footerAbout">
+        <div class="footer-brand-row"><div class="footer-logo">NS</div><div><b>NAGRIK SAHAYAK</b><small>Together for a Better Ahmedabad ♡</small></div></div>
+        <p>A simple civic platform to report local issues, support communities and stay informed.</p>
+        <span class="footer-credit">Created by <strong>Muskan &amp; Jayshri</strong></span>
+      </div>
+
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <button type="button" class="footer-link" data-page="dashboard">Dashboard</button>
+        <button type="button" class="footer-link" data-page="reports">Reports</button>
+        <a class="footer-link" href="#footerAbout">About Us</a>
+        <a class="footer-link" href="mailto:nagriksahayak.support@gmail.com?subject=Nagrik%20Sahayak%20Help">Help</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h3>Contact Us</h3>
+        <a href="mailto:nagriksahayak.support@gmail.com"><span aria-hidden="true">✉</span> nagriksahayak.support@gmail.com</a>
+        <p>For help, queries and civic support.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nagrik Sahayak. All Rights Reserved.</span>
+      <span>Made with care for our community.</span>
+    </div>
+  </footer>
+  </main>
+</div>
+
+<!-- NAAS -->
+<button id="naasFloat" class="naas-float">🤖 NAAS</button>
+<div id="naasPanel" class="naas-panel">
+  <div class="naas-head"><div><b>NAAS</b><small>Nagrik Assistance & Alert System</small></div><button id="closeNaas">×</button></div>
+  <div id="chat" class="chat"><div class="bot">Hi! I am NAAS. Tell me: <b>water</b>, <b>electricity</b>, <b>blood</b> or <b>complaint</b>.</div></div>
+  <div class="chat-input"><input id="chatInput" placeholder="Ask NAAS..."><button id="chatSend">→</button></div>
+</div>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
